@@ -72,7 +72,7 @@
             echo "<td>{$player['teamName']}</td>";
             echo "<td>{$player['nationalityName']}</td>";
             echo "<td>
-                    <button onclick='openPopup(\"edit\", {$player['playerID']})'><i class='fas fa-edit'></i></button>
+                    <a href='?edit=$player[playerID]'><button onclick='openPopup(\"edit\", {$player['playerID']})'><i class='fas fa-edit'></i></button></a>
                     <button onclick='deletePlayer({$player['playerID']})'><i class='fas fa-trash'></i></button>
                   </td>";
             echo "</tr>";

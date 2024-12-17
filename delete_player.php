@@ -1,9 +1,8 @@
 <?php
 include 'connect.php';
 
-
-if (isset($_GET['deleteId'])) {
-    $playerId = $_GET['deleteId'];
+if (isset($_GET['playerID'])) {
+    $playerId = $_GET['playerID'];
 
     $sql = "DELETE FROM players WHERE playerID = ?";
     $stmt = $conn->prepare($sql);
@@ -17,4 +16,9 @@ if (isset($_GET['deleteId'])) {
     }
 
     $stmt->close();
+    header("Location: dashboard.php"); 
+    exit();
+} else {
+    echo "Player ID not provided.";
 }
+?>
