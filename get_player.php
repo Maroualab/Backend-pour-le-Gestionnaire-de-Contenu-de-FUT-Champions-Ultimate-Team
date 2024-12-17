@@ -1,5 +1,4 @@
 <?php
-// get_player.php
 include 'connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['playerID'])) {

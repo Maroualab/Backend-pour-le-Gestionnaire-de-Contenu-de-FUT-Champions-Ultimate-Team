@@ -15,7 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $teamName = $_POST['teamName'];
     $nationalityName = $_POST['nationalityName'];
 
-    // Resolve teamName to teamID
     $teamCheck = $conn->prepare("SELECT teamID FROM teams WHERE name = ?");
     $teamCheck->bind_param("s", $teamName);
     $teamCheck->execute();
@@ -27,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $teamCheck->fetch();
     $teamCheck->close();
 
-    // Resolve nationalityName to nationalityID
     $nationalityCheck = $conn->prepare("SELECT nationalityID FROM nationalities WHERE name = ?");
     $nationalityCheck->bind_param("s", $nationalityName);
     $nationalityCheck->execute();
