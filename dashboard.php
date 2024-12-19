@@ -93,6 +93,8 @@ include 'connect.php';
         ?>
     </table>
 
+
+
     <div id="popup" class="popup">
         <div class="popup-content">
             <span class="close" onclick="closePopup()">&times;</span>
@@ -176,7 +178,7 @@ include 'connect.php';
             document.getElementById('nationalityID').value = '';
 
             if (action === 'edit') {
-                fetch('./get_player.php?playerID=' + playerID)
+                fetch('./CRUD/get_player.php?playerID=' + playerID)
                     .then(response => response.json())
                     .then(data => {
                         document.getElementById('playerID').value = data.playerID;

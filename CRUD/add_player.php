@@ -15,7 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $teamID = $_POST['teamID'];
     $nationalityID = $_POST['nationalityID'];
 
-    // Insert player
     $stmt = $conn->prepare("INSERT INTO players (name, photo, position, rating, pace, shooting, passing, dribbling, defending, physical, teamID, nationalityID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("sssiiiiiiiii", $name, $photo, $position, $rating, $pace, $shooting, $passing, $dribbling, $defending, $physical, $teamID, $nationalityID);
     $stmt->execute();
@@ -23,4 +22,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     header("Location: ../dashboard.php");
 }
-?>
+

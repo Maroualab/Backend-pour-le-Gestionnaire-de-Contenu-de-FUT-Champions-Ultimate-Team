@@ -1,8 +1,10 @@
 <?php
-include("./connect.php");
-if (isset($_GET["edit"])) {
-    $id = $_GET["edit"];
-    $sql = "SELECT
+include '../connect.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['playerID'])) {
+    $playerID = $_GET['playerID'];
+    $query = "
+        SELECT
             p.playerID,
             p.name,
             p.photo,
@@ -14,6 +16,8 @@ if (isset($_GET["edit"])) {
             p.dribbling,
             p.defending,
             p.physical,
+            p.teamID,
+            p.nationalityID,
             t.name AS teamName,
             n.name AS nationalityName
         FROM
@@ -22,12 +26,15 @@ if (isset($_GET["edit"])) {
             teams t ON p.teamID = t.teamID
         JOIN
             nationalities n ON p.nationalityID = n.nationalityID
-          WHERE playerID=$id;";
-    $result = $conn->query($sql);
-    while ($row = $result->fetch_assoc()) {
-        $editplayer[] = $row;
-    }
-    header("location:./");
-    echo print_r($editplayer);
-}
+        WHERE
+            p.playerID = ?
+    ";
 
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $playerID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $player = $result->fetch_assoc();
+    echo json_encode($player);
+    $stmt->close();
+}

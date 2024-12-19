@@ -21,4 +21,3 @@ if (isset($_GET['playerID'])) {
 } else {
     echo "Player ID not provided.";
 }
-?>
