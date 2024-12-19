@@ -1,8 +1,8 @@
 <?php
 include("./connect.php");
-if(isset($_GET["edit"])){
-    $id=$_GET["edit"];
-    $sql="SELECT
+if (isset($_GET["edit"])) {
+    $id = $_GET["edit"];
+    $sql = "SELECT
             p.playerID,
             p.name,
             p.photo,
@@ -23,12 +23,11 @@ if(isset($_GET["edit"])){
         JOIN
             nationalities n ON p.nationalityID = n.nationalityID
           WHERE playerID=$id;";
-          $result=$conn->query($sql);
-          while ($row = $result->fetch_assoc()) {
-            $editplayer[] = $row;
-        }
-        header("location:./");
-        echo print_r($editplayer);
+    $result = $conn->query($sql);
+    while ($row = $result->fetch_assoc()) {
+        $editplayer[] = $row;
+    }
+    header("location:./");
+    echo print_r($editplayer);
 }
 
-?>

@@ -1,5 +1,5 @@
 <?php
-include 'connect.php';
+include '../connect.php';
 
 if (isset($_GET['playerID'])) {
     $playerId = $_GET['playerID'];
@@ -16,7 +16,7 @@ if (isset($_GET['playerID'])) {
     }
 
     $stmt->close();
-    header("Location: dashboard.php"); 
+    header("Location: ../dashboard.php"); 
     exit();
 } else {
     echo "Player ID not provided.";

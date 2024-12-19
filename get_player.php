@@ -37,4 +37,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['playerID'])) {
     echo json_encode($player);
     $stmt->close();
 }
-?>

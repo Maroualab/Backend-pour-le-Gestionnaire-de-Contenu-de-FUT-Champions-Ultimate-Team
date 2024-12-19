@@ -1,6 +1,5 @@
 <?php
-
-include 'connect.php';
+include '../connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $playerID = $_POST['playerID'];
@@ -14,35 +13,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $dribbling = $_POST['dribbling'];
     $defending = $_POST['defending'];
     $physical = $_POST['physical'];
-    $teamName = $_POST['teamName'];
-    $nationalityName = $_POST['nationalityName'];
+    $teamID = $_POST['teamID'];
+    $nationalityID = $_POST['nationalityID'];
 
-    $teamCheck = $conn->prepare("SELECT teamID FROM teams WHERE name = ?");
-    $teamCheck->bind_param("s", $teamName);
+    $teamCheck = $conn->prepare("SELECT teamID FROM teams WHERE teamID = ?");
+    $teamCheck->bind_param("i", $teamID);
     $teamCheck->execute();
     $teamCheck->store_result();
     if ($teamCheck->num_rows == 0) {
-        die("Error: Team Name does not exist.");
+        die("Error: Team ID does not exist.");
     }
-    $teamCheck->bind_result($teamID);
-    $teamCheck->fetch();
     $teamCheck->close();
 
-    $nationalityCheck = $conn->prepare("SELECT nationalityID FROM nationalities WHERE name = ?");
-    $nationalityCheck->bind_param("s", $nationalityName);
+    $nationalityCheck = $conn->prepare("SELECT nationalityID FROM nationalities WHERE nationalityID = ?");
+    $nationalityCheck->bind_param("i", $nationalityID);
     $nationalityCheck->execute();
     $nationalityCheck->store_result();
     if ($nationalityCheck->num_rows == 0) {
-        die("Error: Nationality Name does not exist.");
+        die("Error: Nationality ID does not exist.");
     }
-    $nationalityCheck->bind_result($nationalityID);
-    $nationalityCheck->fetch();
     $nationalityCheck->close();
 
     $stmt = $conn->prepare("UPDATE players SET name=?, photo=?, position=?, rating=?, pace=?, shooting=?, passing=?, dribbling=?, defending=?, physical=?, teamID=?, nationalityID=? WHERE playerID=?");
     $stmt->bind_param("sssiiiiiiiiii", $name, $photo, $position, $rating, $pace, $shooting, $passing, $dribbling, $defending, $physical, $teamID, $nationalityID, $playerID);
     $stmt->execute();
     $stmt->close();
-    header("Location: dashboard.php");
+
+    header("Location: ../dashboard.php");
+    exit();
 }
-?>

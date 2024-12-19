@@ -1,7 +1,8 @@
 <?php
-include 'connect.php';
+include './connect.php';
 
-function listPlayers() {
+function listPlayers()
+{
     global $conn;
     $query = "
         SELECT
@@ -34,4 +35,8 @@ function listPlayers() {
 }
 
 $players = listPlayers();
-?>
+
+
+
+
+
