@@ -18,20 +18,21 @@ include 'connect.php';
         }
 
         .sidebar {
-            width: 200px;
+            width: 150px;
             background-color: #ffe6e6;
-            position: fixed;
+            /* position: fixed; */
             height: 100%;
-            overflow: auto;
+            /* overflow: auto; */
             padding-top: 20px;
         }
 
         .sidebar a {
-            display: block;
+            /* display: block; */
             color: #ff69b4;
             padding: 16px;
             text-decoration: none;
             border-left: 4px solid transparent;
+            
         }
 
         .sidebar a.active {
@@ -55,7 +56,7 @@ include 'connect.php';
         }
 
         table {
-            width: 100%;
+            width: 90%;
             border-collapse: collapse;
             margin-top: 20px;
             background-color: white;
@@ -101,7 +102,7 @@ include 'connect.php';
             top: 0;
             width: 100%;
             height: 100%;
-            overflow: auto;
+            /* overflow: auto; */
             background-color: rgb(0, 0, 0);
             background-color: rgba(0, 0, 0, 0.4);
         }

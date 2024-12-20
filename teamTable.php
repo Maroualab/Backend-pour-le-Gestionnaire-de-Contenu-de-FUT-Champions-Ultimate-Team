@@ -1,3 +1,6 @@
+<?php 
+include 'connect.php' ;
+?>
 <!DOCTYPE html>
 <html>
 
@@ -5,48 +8,64 @@
     <title>Club Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
+          body {
             margin: 0;
-            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
         }
 
         .sidebar {
-            width: 200px;
-            background-color: #ffe6e6;
-            position: fixed;
-            height: 100%;
-            overflow: auto;
-            padding-top: 20px;
-        }
-
-        .sidebar a {
-            display: block;
-            color: #ff69b4;
-            padding: 16px;
-            text-decoration: none;
-            border-left: 4px solid transparent;
-        }
-
-        .sidebar a.active {
-            background-color: #ffb3b3;
-            color: white;
-            border-left: 4px solid #ff69b4;
-        }
-
-        .sidebar a:hover:not(.active) {
-            background-color: #ffcccc;
-            color: #ff69b4;
-        }
-
-        .content {
-            margin-left: 200px;
+            width: 250px;
+            height: 100vh;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
             padding: 20px;
         }
 
-        h1 {
+        .sidebar-header {
+            margin-bottom: 20px;
+        }
+
+        .sidebar-menu {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .menu-item.active,
+        .menu-item:hover {
+            background-color: #e0e0e0;
+        }
+
+        .menu-icon {
+            margin-right: 10px;
+        }
+
+        .account-section {
+            margin: 20px 0 10px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #777;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+            background-color: #fff;
+        }
+      h1 {
             color: #ff69b4;
         }
 
@@ -162,6 +181,41 @@
 </head>
 
 <body>
+
+
+<div class="sidebar">
+    <div class="sidebar-header">
+        <!-- You can add a logo or text here -->
+    </div>
+    <ul class="sidebar-menu">
+        <li class="menu-item active" id="homePage" onclick="loadContent('home')">
+            <span class="menu-icon">📊</span> Home
+        </li>
+        <li class="menu-item" id="playersPage" onclick="loadContent('player')">
+            <span class="menu-icon">📋</span> Players
+        </li>
+        <li class="menu-item" id="clubsPage" onclick="loadContent('club')">
+            <span class="menu-icon">💳</span> Clubs
+        </li>
+        <li class="menu-item" id="nationalitiesPage" onclick="loadContent('nationality')">
+            <span class="menu-icon">🌌</span> Nationalities
+        </li>
+    </ul>
+    <h4 class="account-section">Account Pages</h4>
+    <ul class="sidebar-menu">
+        <li class="menu-item">
+            <a href="profile.php"><span class="menu-icon">👤</span> Profile</a>
+        </li>
+        <li class="menu-item">
+            <a href="signin.php"><span class="menu-icon">🔓</span> Sign In</a>
+        </li>
+        <li class="menu-item">
+            <a href="signup.php"><span class="menu-icon">📝</span> Sign Up</a>
+        </li>
+    </ul>
+</div>
+
+
     <h1>Club Dashboard</h1>
     <button onclick="openPopup('add')">Add New Club</button>
     <table>
@@ -173,7 +227,7 @@
         </tr>
 
         <?php
-        include 'CRUD_team/listTeams.php';
+        include './CRUD_team/listTeams.php';
         foreach ($teams as $team) {
             echo "<tr>";
             echo "<td>{$team['teamID']}</td>";
@@ -203,6 +257,34 @@
     </div>
 
     <script>
+          function loadContent(type) {
+      document.querySelectorAll('.menu-item').forEach(item => {
+          item.classList.remove('active');
+      });
+
+      const clickedItem = document.querySelector(`#${type}Page`);
+      if (clickedItem) {
+          clickedItem.classList.add('active');
+      }
+
+      let url = '';
+      switch (type) {
+          case 'player':
+              url = 'dashboard.php';
+              break;
+          case 'club':
+              url = 'teamTable.php';
+              break;
+          case 'nationality':
+              url = 'nationalityTable.php';
+              break;
+          default:
+              url = 'home.php';
+      }
+
+     
+  }
+
         function openPopup(action, teamID = null) {
             document.getElementById('popup').style.display = 'block';
             document.getElementById('teamForm').action = action === 'add' ? 'CRUD_team/addTeam.php' : 'CRUD_team/updateTeam.php';
