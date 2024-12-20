@@ -12,4 +12,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['nationalityID'])) {
     echo json_encode($rowNationality);
     $stmt->close();
 }
-?>
+

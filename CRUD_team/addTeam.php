@@ -3,11 +3,11 @@ include '../connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
-    $logo = $_POST['logo'];
+    $photo = $_POST['photo'];
 
 
     $stmt = $conn->prepare("INSERT INTO teams (name, logo) VALUES (?, ?)");
-    $stmt->bind_param("ss", $name, $logo);
+    $stmt->bind_param("ss", $name, $photo);
     $stmt->execute();
     $stmt->close();
 

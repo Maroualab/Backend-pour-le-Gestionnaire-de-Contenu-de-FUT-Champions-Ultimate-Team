@@ -12,4 +12,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['teamID'])) {
     echo json_encode($rowTeam);
     $stmt->close();
 }
-?>
