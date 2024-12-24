@@ -1,7 +1,7 @@
 <?php
 include '../connect.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if (isset($_POST['playerID'])) {
     $name = $_POST['name'];
     $photo = $_POST['photo'];
     $position = $_POST['position'];

@@ -21,9 +21,9 @@ function listPlayers()
             n.name AS nationalityName
         FROM
             players p
-        JOIN
+        LEFT JOIN
             teams t ON p.teamID = t.teamID
-        JOIN
+        LEFT JOIN
             nationalities n ON p.nationalityID = n.nationalityID
     ";
     $result = $conn->query($query);

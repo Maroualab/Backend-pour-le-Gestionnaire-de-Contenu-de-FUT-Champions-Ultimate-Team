@@ -1,7 +1,7 @@
 <?php
 include '../connect.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['nationalityID'])) {
+if (isset($_GET['nationalityID'])) {
     $nationalityID = $_GET['nationalityID'];
     $query = "SELECT flag, name, nationalityID FROM nationalities WHERE nationalityID = ?";
     $stmt = $conn->prepare($query);

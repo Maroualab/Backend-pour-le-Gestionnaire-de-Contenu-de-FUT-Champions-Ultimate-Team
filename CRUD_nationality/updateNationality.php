@@ -1,7 +1,7 @@
 <?php
 include '../connect.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if (isset($_POST['nationalityID'])) {
     $nationalityID = $_POST['nationalityID'];
     $name = $_POST['name'];
     $flag = $_POST['flag'];

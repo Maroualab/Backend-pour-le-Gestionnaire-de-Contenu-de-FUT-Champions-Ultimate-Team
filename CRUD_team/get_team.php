@@ -1,7 +1,7 @@
 <?php
 include '../connect.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['teamID'])) {
+if (isset($_GET['teamID'])) {
     $teamID = $_GET['teamID'];
     $query = "SELECT logo, name, teamID FROM teams WHERE teamID = ?";
     $stmt = $conn->prepare($query);

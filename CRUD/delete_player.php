@@ -2,6 +2,7 @@
 include '../connect.php';
 
 if (isset($_GET['playerID'])) {
+    
     $playerId = $_GET['playerID'];
 
     $sql = "DELETE FROM players WHERE playerID = ?";

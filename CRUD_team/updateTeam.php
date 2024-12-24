@@ -1,7 +1,7 @@
 <?php
 include '../connect.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if (isset($_POST['teamID'])) {
     $teamID = $_POST['teamID'];
     $name = $_POST['name'];
     $logo = $_POST['logo'];
@@ -14,4 +14,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header("Location: ../teamTable.php");
     exit();
 }
-?>
+

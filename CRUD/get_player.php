@@ -1,7 +1,7 @@
 <?php
 include '../connect.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['playerID'])) {
+if (isset($_GET['playerID'])) {
     $playerID = $_GET['playerID'];
     $query = "
         SELECT
@@ -22,9 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['playerID'])) {
             n.name AS nationalityName
         FROM
             players p
-        JOIN
+        LEFT JOIN
             teams t ON p.teamID = t.teamID
-        JOIN
+        LEFT JOIN
             nationalities n ON p.nationalityID = n.nationalityID
         WHERE
             p.playerID = ?

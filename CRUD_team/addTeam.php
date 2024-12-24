@@ -1,13 +1,13 @@
 <?php
 include '../connect.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if (isset($_POST['teamID'])) {
     $name = $_POST['name'];
-    $photo = $_POST['photo'];
+    $logo = $_POST['logo'];
 
 
     $stmt = $conn->prepare("INSERT INTO teams (name, logo) VALUES (?, ?)");
-    $stmt->bind_param("ss", $name, $photo);
+    $stmt->bind_param("ss", $name, $logo);
     $stmt->execute();
     $stmt->close();
 

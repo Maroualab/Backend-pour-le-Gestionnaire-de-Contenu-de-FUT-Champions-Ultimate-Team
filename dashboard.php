@@ -7,163 +7,41 @@ include 'connect.php';
 
 <head>
     <title>Player Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <style> table { width: 100%; border-collapse: collapse; }
 
-        .sidebar {
-            width: 150px;
-            background-color: #ffe6e6;
-            /* position: fixed; */
-            height: 100%;
-            /* overflow: auto; */
-            padding-top: 20px;
-        }
+table,
+    th,
+    td {
+        border: 1px solid black;
+    }
 
-        .sidebar a {
-            /* display: block; */
-            color: #ff69b4;
-            padding: 16px;
-            text-decoration: none;
-            border-left: 4px solid transparent;
-            
-        }
+    th,
+    td {
+        padding: 10px;
+        text-align: left;
+    }
 
-        .sidebar a.active {
-            background-color: #ffb3b3;
-            color: white;
-            border-left: 4px solid #ff69b4;
-        }
+    .popup {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+    }
 
-        .sidebar a:hover:not(.active) {
-            background-color: #ffcccc;
-            color: #ff69b4;
-        }
-
-        .content {
-            margin-left: 200px;
-            padding: 20px;
-        }
-
-        h1 {
-            color: #ff69b4;
-        }
-
-        table {
-            width: 90%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background-color: white;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        table,
-        th,
-        td {
-            border: 1px solid #ddd;
-        }
-
-        th,
-        td {
-            padding: 12px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #ffe6e6;
-            color: #ff69b4;
-        }
-
-        button {
-            background-color: #ff69b4;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-
-        button:hover {
-            background-color: #ff1493;
-        }
-
-        .popup {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            /* overflow: auto; */
-            background-color: rgb(0, 0, 0);
-            background-color: rgba(0, 0, 0, 0.4);
-        }
-
-        .popup-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            margin-top: 10px;
-            color: #ff69b4;
-        }
-
-        input[type="text"],
-        input[type="number"],
-        select {
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        input[type="submit"] {
-            background-color: #ff69b4;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #ff1493;
-        }
-    </style>
+    .popup-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+</style>
 </head>
 
 <body>
@@ -225,7 +103,20 @@ include 'connect.php';
                 <input type="text" id="photo" name="photo" required><br>
 
                 <label for="position">Position:</label>
-                <input type="text" id="position" name="position" required><br>
+                <!-- <input type="text" id="position" name="position" required><br> -->
+                 <select id="position" name="position" required>
+                    <option value=""></option>
+                    <option value="ST">ST</option>
+                    <option value="LW">LW</option>
+                    <option value="RW">RW</option>
+                    <option value="GK">GK</option>
+                    <option value="CM">CM</option>
+                    <option value="CDM">CDM</option>
+                    <option value="CB">CB</option>
+                    <option value="RB">RB</option>
+                    <option value="LB">LB</option>
+
+                 </select><br>
 
                 <label for="rating">Rating:</label>
                 <input type="number" id="rating" name="rating" required><br>
